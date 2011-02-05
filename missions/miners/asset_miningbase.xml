@@ -1,0 +1,37 @@
+﻿ <asset name="Mining base Alpha">
+   <pos>
+   <x>-100.125142</x>
+   <y>100.033093</y>
+  </pos>
+  <GFX>
+   <space>000.png</space>
+   <exterior>gas.png</exterior>
+  </GFX>
+  <presence>
+   <faction>Miners</faction>
+   <value>100.000000</value>
+   <range>2</range>
+  </presence>
+  <general>
+   <class>0</class>
+   <population>200</population>
+   <services>
+    	<land/>
+    	<refuel/>
+    	<bar/>
+    	<missions/>
+    	<commodity/>
+    	<outfits/>
+	<shipyard/>
+   </services>
+   <commodities>
+    <commodity>Industrial Goods</commodity>
+   </commodities>
+   <description>Could use a  nice description about this nice rustic miningbase</description>
+   <bar>The bartender is very quite and could use a presentation skills training</bar>
+  </general>
+  <tech>
+   <item>Basic Outfits 2</item>
+   <item>Low Tech Upgrades</item>
+  </tech>
+ </asset>
