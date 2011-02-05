@@ -1,0 +1,9 @@
+<event name="Miners first landing">
+  	<lua>miners/first_landing</lua>
+  	<trigger>land</trigger>
+  	<chance>100</chance>
+  	<cond>planet.cur() == planet.get("Mining base Alpha") and var.peek("miner_stat")==1</cond>
+	<flags>
+   		<unique />
+  	</flags>
+</event>
