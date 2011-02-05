@@ -2,6 +2,7 @@
 	+ Mining base
 		- First off mining missions
 		- Help miners to construct their new mining base in the Sirou system
+		- Mission variable: miner_stat
 
 		- Programmed: Anatolis (feb 2011)
 		- Text:	Anatolis (feb 2011)
