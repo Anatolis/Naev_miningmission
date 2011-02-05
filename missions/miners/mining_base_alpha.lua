@@ -63,7 +63,7 @@ function create ()
    credits = 75000
 
    -- Set stuff up for the spaceport bar
-   misn.setNPC( "A miner", "none" ) -- TODO: portrait of a 'scary' miner -Anatolis
+   misn.setNPC( "A miner", "none" ) -- TODO: portrait of a 'scary' miner
    misn.setDesc( bar_desc )
 end
 
@@ -71,14 +71,16 @@ end
 function accept ()
    -- See if rejects mission
    if not tk.yesno( title[1], text[1] ) then
-      tk.msg( title[8], text[8] )
-	  misn.finish()
+		-- Mission not accepted: react disappointed
+      	tk.msg( title[8], text[8] )
+	  	misn.finish()
    end
 
    -- Check for cargo space because we'll be hauling 5 packages of 3
    if pilot.cargoFree(player.pilot()) <  15 then
-      tk.msg( title[8], text[9] )
-      misn.finish()
+		-- Not enough cargospace: Just give feedback about that
+      	tk.msg( title[8], text[9] )
+      	misn.finish()
    end
 
    -- Add cargo
@@ -98,11 +100,13 @@ function accept ()
    -- Add mission
    misn.accept()
 
-   -- More flavour text
-  
-   tk.msg( title[2], string.format(text[2], satellite_sys:name(), homeworld:name(), homeworld_sys:name(), credits ) )
-   tk.msg( title[2], string.format(text[3], satellite_sys:name()) )
-   misn.osdCreate(mtitle[1], {mdesc[1]:format(satellite_sys:name())} )
+   	-- More flavour text
+  	-- Tell about plans after accepting 
+   	tk.msg( title[2], string.format(text[2], satellite_sys:name(), homeworld:name(), homeworld_sys:name(), credits ) )
+   	tk.msg( title[2], string.format(text[3], satellite_sys:name()) )
+	
+	-- Creating objective    	
+	misn.osdCreate(mtitle[1], {mdesc[1]:format(satellite_sys:name())} )
    
    -- Set up hooks
    hook.land("land")
@@ -113,11 +117,14 @@ function land ()
    landed = planet.cur()
    -- Mission success
    if misn_stage == 1 and landed == homeworld then
-		tk.msg( title[3], string.format( text[5], satellite_sys:name() ) ) -- Completion text
 		player.pay( credits )			-- Pay the player
 		diff.apply("Mining_base_alpha") 	-- Apply diff to reveal our miningbase
 	  
-		var.push( "mine_stat", 1 ) 		-- creating a mission variable for later lookup and tracing.
+		var.push( "miner_stat", 1 ) 		-- creating a mission variable for later lookup and tracing.
+
+		-- Text for completion. Thanks and suggestion to more missions from new station
+		tk.msg( title[3], string.format( text[5], satellite_sys:name() ) )
+		
 		misn.finish(true) 				-- And finishing this mission.
    end
 end
@@ -168,7 +175,7 @@ function launchModules ()
 	hook.timer( 2000, "launchSucces" ) -- Wait for 2sec to display succes message
 end
 function launchSucces()
-
+	-- Message upon good launch. 
 	tk.msg( title[5], string.format( text[4], homeworld:name() ) ) -- Succesfull launch
 		
 	misn.setDesc( string.format( mdesc[2], homeworld:name(), homeworld_sys:name() ) ) -- Go back to home-planet

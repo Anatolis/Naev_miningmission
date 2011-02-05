@@ -1,5 +1,5 @@
 ﻿<mission name="Mining base Alpha">
-  <lua>mining/mining_base</lua>
+  <lua>mining/mining_base_alpha</lua>
   <flags>
    <unique />
   </flags>
@@ -17,7 +17,7 @@
   <lua>mining/mine_cargo</lua>
   <avail>
    <priority>3</priority>
-   <cond>var.peek("mine_stat") &gt;= true</cond>
+   <cond>var.peek("miner_stat") &gt;= true</cond>
    <chance>250</chance>
    <location>Computer</location>
    <faction>Independent</faction>
